@@ -52,6 +52,7 @@ class EncyclopediaChef(SushiChef):
         document_node = self.build_zim_document(
             "https://dumps.wikimedia.org/kiwix/zim/wikipedia/wikipedia_en_100_maxi_2021-05.zim",
             title="100 Wikipedia Articles",
+            description="This collection of 100 Wikipedia Articles is provided to test the Kolibri Zim plugin.",
             license=get_license(
                 licenses.CC_BY_SA,
                 copyright_holder="Wikipedia editors and contributors",
