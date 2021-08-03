@@ -49,10 +49,10 @@ class EncyclopediaChef(SushiChef):
             *args, **kwargs
         )  # Create ChannelNode from data in self.channel_info
 
-        document_node = self.build_zim_document(
+        wikipedia_100_node = self.build_zim_document(
             "https://dumps.wikimedia.org/kiwix/zim/wikipedia/wikipedia_en_100_maxi_2021-05.zim",
             title="100 Wikipedia Articles",
-            description="This collection of 100 Wikipedia Articles is provided to test the Kolibri Zim plugin.",
+            description="This collection of 100 Wikipedia articles is provided to test the Kolibri Zim plugin.",
             license=get_license(
                 licenses.CC_BY_SA,
                 copyright_holder="Wikipedia editors and contributors",
@@ -60,7 +60,25 @@ class EncyclopediaChef(SushiChef):
             language=languages.getlang("en").code,
             thumbnail=files.ThumbnailFile(path=SELECTED_ARTICLES_NODE_THUMBNAIL),
         )
-        channel.add_child(document_node)
+        channel.add_child(wikipedia_100_node)
+
+        # TODO: At the moment, Kolibri Studio does not support files larger
+        #       than 2 GB. In the future, we should be able to use the
+        #       following URL instead of a placeholder:
+        #       <https://download.kiwix.org/zim/.hidden/endless/wikipedia_en_endless_maxi_2021-07.zim>
+
+        wikipedia_endless_node = self.build_zim_document(
+            "data/wikipedia_en_endless_maxi_placeholder.zim",
+            title="Selected Wikipedia Articles",
+            description="This collection has over 800,000 Wikipedia articles on important events, notable people, and more.",
+            license=get_license(
+                licenses.CC_BY_SA,
+                copyright_holder="Wikipedia editors and contributors",
+            ),
+            language=languages.getlang("en").code,
+            thumbnail=files.ThumbnailFile(path=SELECTED_ARTICLES_NODE_THUMBNAIL),
+        )
+        channel.add_child(wikipedia_endless_node)
 
         raise_for_invalid_channel(channel)
 
